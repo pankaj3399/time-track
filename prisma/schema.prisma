@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+  binaryTargets = ["native", "windows"]
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String     @unique
+  name      String
+  password  String
+  timeLimit TimeLimit?
+
+  categories Category[]
+  calendars  Calendar[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+model Category {
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  color    String
+  category String
+  userId  String   @db.ObjectId
+
+  user User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Calendar {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  start       DateTime
+  end         DateTime
+  allDay      Boolean  @default(false)
+  color       String?
+  category    String?
+  description String?
+  location    String?
+  urls        String?
+  notifyBefore Int?    @default(0)
+  
+  // Recurrence
+  frequency   String?  // "day" | "week" | "month" | "year"
+  interval    Int?     @default(1)
+  byWeekday   String[] // ["Monday", "Tuesday", etc.]
+  byMonthday  Int[]    // [1, 2, 3, etc.]
+  byMonth     String[] // ["January", "February", etc.]
+  startRecur  DateTime?
+  endRecur    DateTime?
+
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum TimeLimit {
+  Open_Settings
+  Block_Settings
+  Limit_Settings
+  Close_Settings
+}
