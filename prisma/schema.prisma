@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+  provider      = "prisma-client-js"
+  output        = "../lib/generated/prisma"
   binaryTargets = ["native", "windows"]
 }
 
@@ -16,7 +16,7 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
   email     String     @unique
   name      String
   password  String
@@ -24,15 +24,17 @@ model User {
 
   categories Category[]
   calendars  Calendar[]
+  goals      Goal[]
+  habits     Habit[]
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
 }
 
 model Category {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   color    String
   category String
-  userId  String   @db.ObjectId
+  userId   String @db.ObjectId
 
   user User @relation(fields: [userId], references: [id])
 
@@ -41,37 +43,116 @@ model Category {
 }
 
 model Calendar {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String
-  start       DateTime
-  end         DateTime
-  allDay      Boolean  @default(false)
-  color       String?
-  category    String?
-  description String?
-  location    String?
-  urls        String?
-  notifyBefore Int?    @default(0)
-  
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  start        DateTime
+  end          DateTime
+  allDay       Boolean  @default(false)
+  color        String?
+  category     String?
+  description  String?
+  location     String?
+  urls         String?
+  notifyBefore Int?     @default(0)
+
   // Recurrence
-  frequency   String?  // "day" | "week" | "month" | "year"
-  interval    Int?     @default(1)
-  byWeekday   String[] // ["Monday", "Tuesday", etc.]
-  byMonthday  Int[]    // [1, 2, 3, etc.]
-  byMonth     String[] // ["January", "February", etc.]
-  startRecur  DateTime?
-  endRecur    DateTime?
+  frequency  String? // "day" | "week" | "month" | "year"
+  interval   Int?      @default(1)
+  byWeekday  String[] // ["Monday", "Tuesday", etc.]
+  byMonthday Int[] // [1, 2, 3, etc.]
+  byMonth    String[] // ["January", "February", etc.]
+  startRecur DateTime?
+  endRecur   DateTime?
 
-  userId      String   @db.ObjectId
-  user        User     @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-enum TimeLimit {
+model Goal {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  startDate   DateTime
+  dueDate     DateTime
+  category    String
+  resources   Resource[]
+  subtasks    Subtask[]
+  userId      String     @db.ObjectId
+  user        User       @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Resource {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  label  String
+  url    String
+  goalId String @db.ObjectId
+  goal   Goal   @relation(fields: [goalId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subtask {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  title  String
+  status String
+  goalId String @db.ObjectId
+  goal   Goal   @relation(fields: [goalId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Habit {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String?
+  color       String   @default("#1E90FF")
+  category    String
+  frequency   String   @default("daily") // daily, weekly, monthly
+  targetCount Int      @default(1) // Number of times to complete per frequency
+  userId      String   @db.ObjectId
+  user        User     @relation(fields: [userId], references: [id])
+  
+  completions HabitCompletion[]
+  memos       HabitMemo[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HabitCompletion {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  habitId   String   @db.ObjectId
+  habit     Habit    @relation(fields: [habitId], references: [id])
+  date      DateTime
+  count     Int      @default(1) // Number of times completed on this date
+  notes     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HabitMemo {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  habitId   String   @db.ObjectId
+  habit     Habit    @relation(fields: [habitId], references: [id])
+  content   String
+  date      DateTime
+  tags      String[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum TimeLimit {  
   Open_Settings
   Block_Settings
   Limit_Settings
-  Close_Settings
 }
