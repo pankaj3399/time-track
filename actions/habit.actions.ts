@@ -10,15 +10,11 @@ export const createHabit = async ({
   description,
   color,
   category,
-  frequency,
-  targetCount,
 }: {
   title: string;
   description?: string;
   color?: string;
   category: string;
-  frequency?: string;
-  targetCount?: number;
 }) => {
   try {
     const session = await auth();
@@ -33,8 +29,6 @@ export const createHabit = async ({
         description,
         color: color || "#1E90FF",
         category,
-        frequency: frequency || "daily",
-        targetCount: targetCount || 1,
         userId: session.user.id,
       },
     });
@@ -53,16 +47,12 @@ export const updateHabit = async ({
   description,
   color,
   category,
-  frequency,
-  targetCount,
 }: {
   id: string;
   title?: string;
   description?: string;
   color?: string;
   category?: string;
-  frequency?: string;
-  targetCount?: number;
 }) => {
   try {
     const session = await auth();
@@ -81,8 +71,6 @@ export const updateHabit = async ({
         description,
         color,
         category,
-        frequency,
-        targetCount,
       },
     });
 
@@ -149,12 +137,10 @@ export const getHabits = async () => {
 export const completeHabit = async ({
   habitId,
   date,
-  count,
   notes,
 }: {
   habitId: string;
   date: Date;
-  count?: number;
   notes?: string;
 }) => {
   try {
@@ -180,7 +166,6 @@ export const completeHabit = async ({
       data: {
         habitId,
         date,
-        count: count || 1,
         notes,
       },
     });

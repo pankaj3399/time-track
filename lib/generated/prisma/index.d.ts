@@ -8059,18 +8059,8 @@ export namespace Prisma {
 
   export type AggregateHabit = {
     _count: HabitCountAggregateOutputType | null
-    _avg: HabitAvgAggregateOutputType | null
-    _sum: HabitSumAggregateOutputType | null
     _min: HabitMinAggregateOutputType | null
     _max: HabitMaxAggregateOutputType | null
-  }
-
-  export type HabitAvgAggregateOutputType = {
-    targetCount: number | null
-  }
-
-  export type HabitSumAggregateOutputType = {
-    targetCount: number | null
   }
 
   export type HabitMinAggregateOutputType = {
@@ -8079,8 +8069,6 @@ export namespace Prisma {
     description: string | null
     color: string | null
     category: string | null
-    frequency: string | null
-    targetCount: number | null
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8092,8 +8080,6 @@ export namespace Prisma {
     description: string | null
     color: string | null
     category: string | null
-    frequency: string | null
-    targetCount: number | null
     userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8105,8 +8091,6 @@ export namespace Prisma {
     description: number
     color: number
     category: number
-    frequency: number
-    targetCount: number
     userId: number
     createdAt: number
     updatedAt: number
@@ -8114,22 +8098,12 @@ export namespace Prisma {
   }
 
 
-  export type HabitAvgAggregateInputType = {
-    targetCount?: true
-  }
-
-  export type HabitSumAggregateInputType = {
-    targetCount?: true
-  }
-
   export type HabitMinAggregateInputType = {
     id?: true
     title?: true
     description?: true
     color?: true
     category?: true
-    frequency?: true
-    targetCount?: true
     userId?: true
     createdAt?: true
     updatedAt?: true
@@ -8141,8 +8115,6 @@ export namespace Prisma {
     description?: true
     color?: true
     category?: true
-    frequency?: true
-    targetCount?: true
     userId?: true
     createdAt?: true
     updatedAt?: true
@@ -8154,8 +8126,6 @@ export namespace Prisma {
     description?: true
     color?: true
     category?: true
-    frequency?: true
-    targetCount?: true
     userId?: true
     createdAt?: true
     updatedAt?: true
@@ -8200,18 +8170,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: HabitAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: HabitSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: HabitMinAggregateInputType
@@ -8242,8 +8200,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: HabitCountAggregateInputType | true
-    _avg?: HabitAvgAggregateInputType
-    _sum?: HabitSumAggregateInputType
     _min?: HabitMinAggregateInputType
     _max?: HabitMaxAggregateInputType
   }
@@ -8254,14 +8210,10 @@ export namespace Prisma {
     description: string | null
     color: string
     category: string
-    frequency: string
-    targetCount: number
     userId: string
     createdAt: Date
     updatedAt: Date
     _count: HabitCountAggregateOutputType | null
-    _avg: HabitAvgAggregateOutputType | null
-    _sum: HabitSumAggregateOutputType | null
     _min: HabitMinAggregateOutputType | null
     _max: HabitMaxAggregateOutputType | null
   }
@@ -8286,8 +8238,6 @@ export namespace Prisma {
     description?: boolean
     color?: boolean
     category?: boolean
-    frequency?: boolean
-    targetCount?: boolean
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8305,14 +8255,12 @@ export namespace Prisma {
     description?: boolean
     color?: boolean
     category?: boolean
-    frequency?: boolean
-    targetCount?: boolean
     userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HabitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "color" | "category" | "frequency" | "targetCount" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["habit"]>
+  export type HabitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "color" | "category" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["habit"]>
   export type HabitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     completions?: boolean | Habit$completionsArgs<ExtArgs>
@@ -8333,8 +8281,6 @@ export namespace Prisma {
       description: string | null
       color: string
       category: string
-      frequency: string
-      targetCount: number
       userId: string
       createdAt: Date
       updatedAt: Date
@@ -8738,8 +8684,6 @@ export namespace Prisma {
     readonly description: FieldRef<"Habit", 'String'>
     readonly color: FieldRef<"Habit", 'String'>
     readonly category: FieldRef<"Habit", 'String'>
-    readonly frequency: FieldRef<"Habit", 'String'>
-    readonly targetCount: FieldRef<"Habit", 'Int'>
     readonly userId: FieldRef<"Habit", 'String'>
     readonly createdAt: FieldRef<"Habit", 'DateTime'>
     readonly updatedAt: FieldRef<"Habit", 'DateTime'>
@@ -9185,25 +9129,14 @@ export namespace Prisma {
 
   export type AggregateHabitCompletion = {
     _count: HabitCompletionCountAggregateOutputType | null
-    _avg: HabitCompletionAvgAggregateOutputType | null
-    _sum: HabitCompletionSumAggregateOutputType | null
     _min: HabitCompletionMinAggregateOutputType | null
     _max: HabitCompletionMaxAggregateOutputType | null
-  }
-
-  export type HabitCompletionAvgAggregateOutputType = {
-    count: number | null
-  }
-
-  export type HabitCompletionSumAggregateOutputType = {
-    count: number | null
   }
 
   export type HabitCompletionMinAggregateOutputType = {
     id: string | null
     habitId: string | null
     date: Date | null
-    count: number | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9213,7 +9146,6 @@ export namespace Prisma {
     id: string | null
     habitId: string | null
     date: Date | null
-    count: number | null
     notes: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -9223,7 +9155,6 @@ export namespace Prisma {
     id: number
     habitId: number
     date: number
-    count: number
     notes: number
     createdAt: number
     updatedAt: number
@@ -9231,19 +9162,10 @@ export namespace Prisma {
   }
 
 
-  export type HabitCompletionAvgAggregateInputType = {
-    count?: true
-  }
-
-  export type HabitCompletionSumAggregateInputType = {
-    count?: true
-  }
-
   export type HabitCompletionMinAggregateInputType = {
     id?: true
     habitId?: true
     date?: true
-    count?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -9253,7 +9175,6 @@ export namespace Prisma {
     id?: true
     habitId?: true
     date?: true
-    count?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -9263,7 +9184,6 @@ export namespace Prisma {
     id?: true
     habitId?: true
     date?: true
-    count?: true
     notes?: true
     createdAt?: true
     updatedAt?: true
@@ -9308,18 +9228,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: HabitCompletionAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: HabitCompletionSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: HabitCompletionMinAggregateInputType
@@ -9350,8 +9258,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: HabitCompletionCountAggregateInputType | true
-    _avg?: HabitCompletionAvgAggregateInputType
-    _sum?: HabitCompletionSumAggregateInputType
     _min?: HabitCompletionMinAggregateInputType
     _max?: HabitCompletionMaxAggregateInputType
   }
@@ -9360,13 +9266,10 @@ export namespace Prisma {
     id: string
     habitId: string
     date: Date
-    count: number
     notes: string | null
     createdAt: Date
     updatedAt: Date
     _count: HabitCompletionCountAggregateOutputType | null
-    _avg: HabitCompletionAvgAggregateOutputType | null
-    _sum: HabitCompletionSumAggregateOutputType | null
     _min: HabitCompletionMinAggregateOutputType | null
     _max: HabitCompletionMaxAggregateOutputType | null
   }
@@ -9389,7 +9292,6 @@ export namespace Prisma {
     id?: boolean
     habitId?: boolean
     date?: boolean
-    count?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -9402,13 +9304,12 @@ export namespace Prisma {
     id?: boolean
     habitId?: boolean
     date?: boolean
-    count?: boolean
     notes?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type HabitCompletionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "habitId" | "date" | "count" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["habitCompletion"]>
+  export type HabitCompletionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "habitId" | "date" | "notes" | "createdAt" | "updatedAt", ExtArgs["result"]["habitCompletion"]>
   export type HabitCompletionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     habit?: boolean | HabitDefaultArgs<ExtArgs>
   }
@@ -9422,7 +9323,6 @@ export namespace Prisma {
       id: string
       habitId: string
       date: Date
-      count: number
       notes: string | null
       createdAt: Date
       updatedAt: Date
@@ -9822,7 +9722,6 @@ export namespace Prisma {
     readonly id: FieldRef<"HabitCompletion", 'String'>
     readonly habitId: FieldRef<"HabitCompletion", 'String'>
     readonly date: FieldRef<"HabitCompletion", 'DateTime'>
-    readonly count: FieldRef<"HabitCompletion", 'Int'>
     readonly notes: FieldRef<"HabitCompletion", 'String'>
     readonly createdAt: FieldRef<"HabitCompletion", 'DateTime'>
     readonly updatedAt: FieldRef<"HabitCompletion", 'DateTime'>
@@ -11312,8 +11211,6 @@ export namespace Prisma {
     description: 'description',
     color: 'color',
     category: 'category',
-    frequency: 'frequency',
-    targetCount: 'targetCount',
     userId: 'userId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -11326,7 +11223,6 @@ export namespace Prisma {
     id: 'id',
     habitId: 'habitId',
     date: 'date',
-    count: 'count',
     notes: 'notes',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -11930,8 +11826,6 @@ export namespace Prisma {
     description?: StringNullableFilter<"Habit"> | string | null
     color?: StringFilter<"Habit"> | string
     category?: StringFilter<"Habit"> | string
-    frequency?: StringFilter<"Habit"> | string
-    targetCount?: IntFilter<"Habit"> | number
     userId?: StringFilter<"Habit"> | string
     createdAt?: DateTimeFilter<"Habit"> | Date | string
     updatedAt?: DateTimeFilter<"Habit"> | Date | string
@@ -11946,8 +11840,6 @@ export namespace Prisma {
     description?: SortOrder
     color?: SortOrder
     category?: SortOrder
-    frequency?: SortOrder
-    targetCount?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11965,8 +11857,6 @@ export namespace Prisma {
     description?: StringNullableFilter<"Habit"> | string | null
     color?: StringFilter<"Habit"> | string
     category?: StringFilter<"Habit"> | string
-    frequency?: StringFilter<"Habit"> | string
-    targetCount?: IntFilter<"Habit"> | number
     userId?: StringFilter<"Habit"> | string
     createdAt?: DateTimeFilter<"Habit"> | Date | string
     updatedAt?: DateTimeFilter<"Habit"> | Date | string
@@ -11981,16 +11871,12 @@ export namespace Prisma {
     description?: SortOrder
     color?: SortOrder
     category?: SortOrder
-    frequency?: SortOrder
-    targetCount?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: HabitCountOrderByAggregateInput
-    _avg?: HabitAvgOrderByAggregateInput
     _max?: HabitMaxOrderByAggregateInput
     _min?: HabitMinOrderByAggregateInput
-    _sum?: HabitSumOrderByAggregateInput
   }
 
   export type HabitScalarWhereWithAggregatesInput = {
@@ -12002,8 +11888,6 @@ export namespace Prisma {
     description?: StringNullableWithAggregatesFilter<"Habit"> | string | null
     color?: StringWithAggregatesFilter<"Habit"> | string
     category?: StringWithAggregatesFilter<"Habit"> | string
-    frequency?: StringWithAggregatesFilter<"Habit"> | string
-    targetCount?: IntWithAggregatesFilter<"Habit"> | number
     userId?: StringWithAggregatesFilter<"Habit"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Habit"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Habit"> | Date | string
@@ -12016,7 +11900,6 @@ export namespace Prisma {
     id?: StringFilter<"HabitCompletion"> | string
     habitId?: StringFilter<"HabitCompletion"> | string
     date?: DateTimeFilter<"HabitCompletion"> | Date | string
-    count?: IntFilter<"HabitCompletion"> | number
     notes?: StringNullableFilter<"HabitCompletion"> | string | null
     createdAt?: DateTimeFilter<"HabitCompletion"> | Date | string
     updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
@@ -12027,7 +11910,6 @@ export namespace Prisma {
     id?: SortOrder
     habitId?: SortOrder
     date?: SortOrder
-    count?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12041,7 +11923,6 @@ export namespace Prisma {
     NOT?: HabitCompletionWhereInput | HabitCompletionWhereInput[]
     habitId?: StringFilter<"HabitCompletion"> | string
     date?: DateTimeFilter<"HabitCompletion"> | Date | string
-    count?: IntFilter<"HabitCompletion"> | number
     notes?: StringNullableFilter<"HabitCompletion"> | string | null
     createdAt?: DateTimeFilter<"HabitCompletion"> | Date | string
     updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
@@ -12052,15 +11933,12 @@ export namespace Prisma {
     id?: SortOrder
     habitId?: SortOrder
     date?: SortOrder
-    count?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: HabitCompletionCountOrderByAggregateInput
-    _avg?: HabitCompletionAvgOrderByAggregateInput
     _max?: HabitCompletionMaxOrderByAggregateInput
     _min?: HabitCompletionMinOrderByAggregateInput
-    _sum?: HabitCompletionSumOrderByAggregateInput
   }
 
   export type HabitCompletionScalarWhereWithAggregatesInput = {
@@ -12070,7 +11948,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"HabitCompletion"> | string
     habitId?: StringWithAggregatesFilter<"HabitCompletion"> | string
     date?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
-    count?: IntWithAggregatesFilter<"HabitCompletion"> | number
     notes?: StringNullableWithAggregatesFilter<"HabitCompletion"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"HabitCompletion"> | Date | string
@@ -12653,8 +12530,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHabitsInput
@@ -12668,8 +12543,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12682,8 +12555,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHabitsNestedInput
@@ -12696,8 +12567,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12711,8 +12580,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12723,8 +12590,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12734,8 +12599,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12744,7 +12607,6 @@ export namespace Prisma {
   export type HabitCompletionCreateInput = {
     id?: string
     date: Date | string
-    count?: number
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12755,7 +12617,6 @@ export namespace Prisma {
     id?: string
     habitId: string
     date: Date | string
-    count?: number
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12763,7 +12624,6 @@ export namespace Prisma {
 
   export type HabitCompletionUpdateInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12773,7 +12633,6 @@ export namespace Prisma {
   export type HabitCompletionUncheckedUpdateInput = {
     habitId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12783,7 +12642,6 @@ export namespace Prisma {
     id?: string
     habitId: string
     date: Date | string
-    count?: number
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12791,7 +12649,6 @@ export namespace Prisma {
 
   export type HabitCompletionUpdateManyMutationInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12800,7 +12657,6 @@ export namespace Prisma {
   export type HabitCompletionUncheckedUpdateManyInput = {
     habitId?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13363,17 +13219,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
-
   export type HabitCompletionListRelationFilter = {
     every?: HabitCompletionWhereInput
     some?: HabitCompletionWhereInput
@@ -13400,15 +13245,9 @@ export namespace Prisma {
     description?: SortOrder
     color?: SortOrder
     category?: SortOrder
-    frequency?: SortOrder
-    targetCount?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type HabitAvgOrderByAggregateInput = {
-    targetCount?: SortOrder
   }
 
   export type HabitMaxOrderByAggregateInput = {
@@ -13417,8 +13256,6 @@ export namespace Prisma {
     description?: SortOrder
     color?: SortOrder
     category?: SortOrder
-    frequency?: SortOrder
-    targetCount?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13430,31 +13267,9 @@ export namespace Prisma {
     description?: SortOrder
     color?: SortOrder
     category?: SortOrder
-    frequency?: SortOrder
-    targetCount?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type HabitSumOrderByAggregateInput = {
-    targetCount?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type HabitScalarRelationFilter = {
@@ -13466,21 +13281,15 @@ export namespace Prisma {
     id?: SortOrder
     habitId?: SortOrder
     date?: SortOrder
-    count?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type HabitCompletionAvgOrderByAggregateInput = {
-    count?: SortOrder
   }
 
   export type HabitCompletionMaxOrderByAggregateInput = {
     id?: SortOrder
     habitId?: SortOrder
     date?: SortOrder
-    count?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -13490,14 +13299,9 @@ export namespace Prisma {
     id?: SortOrder
     habitId?: SortOrder
     date?: SortOrder
-    count?: SortOrder
     notes?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type HabitCompletionSumOrderByAggregateInput = {
-    count?: SortOrder
   }
 
   export type HabitMemoCountOrderByAggregateInput = {
@@ -13947,14 +13751,6 @@ export namespace Prisma {
     connect?: HabitMemoWhereUniqueInput | HabitMemoWhereUniqueInput[]
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type UserUpdateOneRequiredWithoutHabitsNestedInput = {
     create?: XOR<UserCreateWithoutHabitsInput, UserUncheckedCreateWithoutHabitsInput>
     connectOrCreate?: UserCreateOrConnectWithoutHabitsInput
@@ -14256,33 +14052,6 @@ export namespace Prisma {
     isSet?: boolean
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
   export type CategoryCreateWithoutUserInput = {
     id?: string
     color: string
@@ -14404,8 +14173,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     completions?: HabitCompletionCreateNestedManyWithoutHabitInput
@@ -14418,8 +14185,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     completions?: HabitCompletionUncheckedCreateNestedManyWithoutHabitInput
@@ -14562,8 +14327,6 @@ export namespace Prisma {
     description?: StringNullableFilter<"Habit"> | string | null
     color?: StringFilter<"Habit"> | string
     category?: StringFilter<"Habit"> | string
-    frequency?: StringFilter<"Habit"> | string
-    targetCount?: IntFilter<"Habit"> | number
     userId?: StringFilter<"Habit"> | string
     createdAt?: DateTimeFilter<"Habit"> | Date | string
     updatedAt?: DateTimeFilter<"Habit"> | Date | string
@@ -15039,7 +14802,6 @@ export namespace Prisma {
   export type HabitCompletionCreateWithoutHabitInput = {
     id?: string
     date: Date | string
-    count?: number
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15048,7 +14810,6 @@ export namespace Prisma {
   export type HabitCompletionUncheckedCreateWithoutHabitInput = {
     id?: string
     date: Date | string
-    count?: number
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15148,7 +14909,6 @@ export namespace Prisma {
     id?: StringFilter<"HabitCompletion"> | string
     habitId?: StringFilter<"HabitCompletion"> | string
     date?: DateTimeFilter<"HabitCompletion"> | Date | string
-    count?: IntFilter<"HabitCompletion"> | number
     notes?: StringNullableFilter<"HabitCompletion"> | string | null
     createdAt?: DateTimeFilter<"HabitCompletion"> | Date | string
     updatedAt?: DateTimeFilter<"HabitCompletion"> | Date | string
@@ -15189,8 +14949,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHabitsInput
@@ -15203,8 +14961,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15232,8 +14988,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHabitsNestedInput
@@ -15245,8 +14999,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15259,8 +15011,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHabitsInput
@@ -15273,8 +15023,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15302,8 +15050,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHabitsNestedInput
@@ -15315,8 +15061,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15371,8 +15115,6 @@ export namespace Prisma {
     description?: string | null
     color?: string
     category: string
-    frequency?: string
-    targetCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15503,8 +15245,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completions?: HabitCompletionUpdateManyWithoutHabitNestedInput
@@ -15516,8 +15256,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     completions?: HabitCompletionUncheckedUpdateManyWithoutHabitNestedInput
@@ -15529,8 +15267,6 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     color?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
-    frequency?: StringFieldUpdateOperationsInput | string
-    targetCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15596,7 +15332,6 @@ export namespace Prisma {
   export type HabitCompletionCreateManyHabitInput = {
     id?: string
     date: Date | string
-    count?: number
     notes?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15613,7 +15348,6 @@ export namespace Prisma {
 
   export type HabitCompletionUpdateWithoutHabitInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15621,7 +15355,6 @@ export namespace Prisma {
 
   export type HabitCompletionUncheckedUpdateWithoutHabitInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15629,7 +15362,6 @@ export namespace Prisma {
 
   export type HabitCompletionUncheckedUpdateManyWithoutHabitInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    count?: IntFieldUpdateOperationsInput | number
     notes?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

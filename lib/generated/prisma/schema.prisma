@@ -115,8 +115,6 @@ model Habit {
   description String?
   color       String  @default("#1E90FF")
   category    String
-  frequency   String  @default("daily") // daily, weekly, monthly
-  targetCount Int     @default(1) // Number of times to complete per frequency
   userId      String  @db.ObjectId
   user        User    @relation(fields: [userId], references: [id])
 
@@ -132,7 +130,6 @@ model HabitCompletion {
   habitId String   @db.ObjectId
   habit   Habit    @relation(fields: [habitId], references: [id])
   date    DateTime
-  count   Int      @default(1) // Number of times completed on this date
   notes   String?
 
   createdAt DateTime @default(now())

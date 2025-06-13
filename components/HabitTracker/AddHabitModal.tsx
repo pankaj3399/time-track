@@ -18,8 +18,6 @@ interface HabitFormData {
   description: string;
   category: string;
   color: string;
-  frequency: "daily" | "weekly" | "monthly";
-  targetCount: number;
 }
 
 interface AddHabitModalProps {
@@ -35,8 +33,6 @@ export const AddHabitModal = ({ isOpen, onClose, onSubmit, categories }: AddHabi
     description: "",
     category: "",
     color: "#1E90FF",
-    frequency: "daily",
-    targetCount: 1,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -47,8 +43,6 @@ export const AddHabitModal = ({ isOpen, onClose, onSubmit, categories }: AddHabi
       description: "",
       category: "",
       color: "#1E90FF",
-      frequency: "daily",
-      targetCount: 1,
     });
   };
 
@@ -90,26 +84,6 @@ export const AddHabitModal = ({ isOpen, onClose, onSubmit, categories }: AddHabi
                 label="Color"
                 value={formData.color}
                 onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-              />
-              <Select
-                label="Frequency"
-                selectedKeys={[formData.frequency]}
-                onSelectionChange={(keys) => {
-                  const selected = Array.from(keys)[0] as HabitFormData["frequency"];
-                  setFormData({ ...formData, frequency: selected });
-                }}
-              >
-                <SelectItem key="daily">Daily</SelectItem>
-                <SelectItem key="weekly">Weekly</SelectItem>
-                <SelectItem key="monthly">Monthly</SelectItem>
-              </Select>
-              <Input
-                type="number"
-                label="Target Count"
-                value={formData.targetCount.toString()}
-                onChange={(e) => setFormData({ ...formData, targetCount: parseInt(e.target.value) || 1 })}
-                min={1}
-                required
               />
             </div>
           </ModalBody>

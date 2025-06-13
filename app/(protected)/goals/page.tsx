@@ -437,16 +437,24 @@ export default function GoalsManagement() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 text-white p-6">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Goals</h1>
+      <div className="flex justify-between items-center mb-8">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-gradient-to-r from-blue-500/20 to-indigo-500/20 rounded-lg">
+            <Calendar className="w-5 h-5 text-blue-400" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-semibold text-white">Goals & Timeline</h1>
+            <p className="text-sm text-gray-400">Track and manage your project goals</p>
+          </div>
+        </div>
         <div className="flex gap-2">
           {hasUnsavedChanges && (
             <button
               onClick={handleSaveChanges}
               disabled={isSaving}
-              className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg flex items-center gap-2 disabled:opacity-50"
+              className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-4 py-2 rounded-lg flex items-center gap-2 disabled:opacity-50 transition-all duration-200"
             >
               {isSaving ? (
                 <>
@@ -465,7 +473,7 @@ export default function GoalsManagement() {
           )}
           <button
             onClick={() => setShowAddGoal(true)}
-            className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg flex items-center gap-2"
+            className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-4 py-2 rounded-lg flex items-center gap-2 transition-all duration-200"
           >
             <Plus size={20} />
             Add Goal
@@ -480,10 +488,10 @@ export default function GoalsManagement() {
       ) : (
         <>
           {/* Time Range Controls */}
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4 mb-8">
             <button
               onClick={() => setRangeOffset((prev) => prev - 1)}
-              className="bg-gray-700 hover:bg-gray-600 p-2 rounded-lg"
+              className="bg-gray-800/50 hover:bg-gray-700/50 p-2 rounded-lg border border-gray-700/50 transition-all duration-200"
             >
               <ChevronLeft size={20} />
             </button>
@@ -491,7 +499,7 @@ export default function GoalsManagement() {
             <select
               value={selectedRange}
               onChange={(e) => setSelectedRange(Number(e.target.value))}
-              className="bg-gray-700 text-white px-4 py-2 rounded-lg border border-gray-600"
+              className="bg-gray-800/50 text-white px-4 py-2 rounded-lg border border-gray-700/50 hover:border-gray-600/50 focus:border-blue-500/50 transition-all duration-200"
             >
               {timeRanges.map((range) => (
                 <option key={range.value} value={range.value}>
@@ -502,7 +510,7 @@ export default function GoalsManagement() {
 
             <button
               onClick={() => setRangeOffset((prev) => prev + 1)}
-              className="bg-gray-700 hover:bg-gray-600 p-2 rounded-lg"
+              className="bg-gray-800/50 hover:bg-gray-700/50 p-2 rounded-lg border border-gray-700/50 transition-all duration-200"
             >
               <ChevronRight size={20} />
             </button>
@@ -514,8 +522,8 @@ export default function GoalsManagement() {
           </div>
 
           {/* Timeline Header */}
-          <div className="mb-4">
-            <div className="flex border-b border-gray-700 pb-2">
+          <div className="mb-6">
+            <div className="flex border-b border-gray-700/50 pb-2">
               <div className="w-80 text-sm font-medium text-gray-400">
                 Tasks
               </div>
@@ -527,7 +535,7 @@ export default function GoalsManagement() {
                       <span key={date.toISOString()}>{formatDate(date)}</span>
                     ))}
                 </div>
-                <div className="h-px bg-gray-700"></div>
+                <div className="h-px bg-gray-700/50"></div>
               </div>
             </div>
           </div>
@@ -539,7 +547,7 @@ export default function GoalsManagement() {
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
-                  className="space-y-2"
+                  className="space-y-4"
                 >
                   {filteredGoals.map((goal, index) => {
                     const completionRate = getCompletionRate(goal.subtasks);
@@ -563,7 +571,7 @@ export default function GoalsManagement() {
                               <div className="w-80 pr-4">
                                 <div
                                   {...provided.dragHandleProps}
-                                  className="bg-gray-800 rounded-lg p-3 border border-gray-700 hover:border-gray-600 cursor-grab"
+                                  className="bg-gradient-to-r from-gray-800/50 to-gray-700/30 rounded-lg p-4 border border-white/10 backdrop-blur-sm hover:border-gray-600/50 transition-all duration-200"
                                 >
                                   <div className="flex items-center justify-between mb-2">
                                     <h3 className="font-medium text-white">
@@ -571,32 +579,31 @@ export default function GoalsManagement() {
                                     </h3>
                                     <button
                                       onClick={() => toggleKanban(goal.id)}
-                                      className="text-gray-400 hover:text-white"
+                                      className="text-gray-400 hover:text-white transition-colors duration-200"
                                     >
                                       <MoreHorizontal size={16} />
                                     </button>
                                   </div>
-                                  <p className="text-sm text-gray-400 mb-2">
+                                  <p className="text-sm text-gray-400 mb-3">
                                     {goal.description}
                                   </p>
-                                  <div className="flex items-center gap-2 text-xs text-gray-500">
-                                    <span className="bg-gray-700 px-2 py-1 rounded">
+                                  <div className="flex items-center gap-2 text-xs">
+                                    <span className="bg-gray-700/50 px-2 py-1 rounded text-gray-300">
                                       {goal.category}
                                     </span>
-                                    <span>
-                                      {Math.round(completionRate * 100)}%
-                                      complete
+                                    <span className="text-gray-400">
+                                      {Math.round(completionRate * 100)}% complete
                                     </span>
                                   </div>
                                   {goal.resources.length > 0 && (
-                                    <div className="mt-2 flex gap-2">
+                                    <div className="mt-3 flex gap-2">
                                       {goal.resources.map((resource) => (
                                         <a
                                           key={resource.url}
                                           href={resource.url}
                                           target="_blank"
                                           rel="noopener noreferrer"
-                                          className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1"
+                                          className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 transition-colors duration-200"
                                         >
                                           <ExternalLink size={12} />
                                           {resource.label}
@@ -610,7 +617,7 @@ export default function GoalsManagement() {
                               {/* Timeline Bar */}
                               <div className="flex-1 relative h-8">
                                 <div
-                                  className="absolute top-1 h-6 rounded-full flex items-center justify-center text-xs font-medium text-white"
+                                  className="absolute top-1 h-6 rounded-full flex items-center justify-center text-xs font-medium text-white shadow-lg transition-all duration-200"
                                   style={{
                                     left: position.left,
                                     width: position.width,
@@ -628,8 +635,8 @@ export default function GoalsManagement() {
 
                             {/* Kanban Board */}
                             {showKanban[goal.id] && (
-                              <div className="mt-4 ml-4 bg-gray-800 rounded-lg p-4 border border-gray-700">
-                                <h4 className="font-medium mb-4">
+                              <div className="mt-4 ml-4 bg-gradient-to-r from-gray-800/50 to-gray-700/30 rounded-lg p-4 border border-white/10 backdrop-blur-sm">
+                                <h4 className="font-medium mb-4 text-white">
                                   Subtasks - {goal.title}
                                 </h4>
                                 <div className="grid grid-cols-4 gap-4">
@@ -643,17 +650,17 @@ export default function GoalsManagement() {
                                         <div
                                           ref={provided.innerRef}
                                           {...provided.droppableProps}
-                                          className={`bg-gray-900 rounded-lg p-3 min-h-32 ${
+                                          className={`bg-gray-900/50 rounded-lg p-3 min-h-32 border border-gray-700/50 ${
                                             snapshot.isDraggingOver
-                                              ? "bg-gray-700"
+                                              ? "bg-gray-700/50 border-gray-600/50"
                                               : ""
-                                          }`}
+                                          } transition-all duration-200`}
                                         >
                                           <div className="flex items-center justify-between mb-3">
                                             <h5 className="font-medium text-sm text-gray-300">
                                               {column}
                                             </h5>
-                                            <span className="text-xs text-gray-500 bg-gray-700 px-2 py-1 rounded">
+                                            <span className="text-xs text-gray-400 bg-gray-800/50 px-2 py-1 rounded">
                                               {
                                                 goal.subtasks.filter(
                                                   (s) => s.status === column,
@@ -678,7 +685,7 @@ export default function GoalsManagement() {
                                                       ref={provided.innerRef}
                                                       {...provided.draggableProps}
                                                       {...provided.dragHandleProps}
-                                                      className={`bg-gray-800 p-2 rounded border border-gray-600 text-sm cursor-grab ${
+                                                      className={`bg-gray-800/50 p-2 rounded border border-gray-700/50 text-sm cursor-grab hover:border-gray-600/50 transition-all duration-200 ${
                                                         snapshot.isDragging
                                                           ? "opacity-50"
                                                           : ""
@@ -713,38 +720,38 @@ export default function GoalsManagement() {
 
       {/* Add Goal Modal */}
       {showAddGoal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
           <form
             onSubmit={handleAddGoal}
-            className="bg-gray-900 p-6 rounded-lg shadow-lg w-full max-w-2xl relative"
+            className="bg-gradient-to-br from-gray-900 to-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl relative border border-white/10"
           >
             <button
               type="button"
               onClick={handleCancelAddGoal}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors duration-200"
             >
               <X size={20} />
             </button>
-            <h2 className="text-xl font-bold mb-4">Add New Goal</h2>
+            <h2 className="text-xl font-bold mb-6 text-white">Add New Goal</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm mb-1">Title</label>
+                <label className="block text-sm mb-1 text-gray-300">Title</label>
                 <input
                   type="text"
                   name="title"
                   value={newGoal.title}
                   onChange={handleNewGoalChange}
-                  className="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white"
+                  className="w-full px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-blue-500/50 transition-all duration-200"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm mb-1">Category</label>
+                <label className="block text-sm mb-1 text-gray-300">Category</label>
                 <select
                   name="category"
                   value={newGoal.category}
                   onChange={handleNewGoalChange}
-                  className="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white"
+                  className="w-full px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white focus:border-blue-500/50 transition-all duration-200"
                 >
                   {categories.map((cat) => (
                     <option key={cat} value={cat}>
@@ -754,41 +761,41 @@ export default function GoalsManagement() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm mb-1">Start Date</label>
+                <label className="block text-sm mb-1 text-gray-300">Start Date</label>
                 <input
                   type="date"
                   name="startDate"
                   value={newGoal.startDate}
                   onChange={handleNewGoalChange}
-                  className="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white"
+                  className="w-full px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white focus:border-blue-500/50 transition-all duration-200"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm mb-1">Due Date</label>
+                <label className="block text-sm mb-1 text-gray-300">Due Date</label>
                 <input
                   type="date"
                   name="dueDate"
                   value={newGoal.dueDate}
                   onChange={handleNewGoalChange}
-                  className="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white"
+                  className="w-full px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white focus:border-blue-500/50 transition-all duration-200"
                   required
                 />
               </div>
               <div className="col-span-2">
-                <label className="block text-sm mb-1">Description</label>
+                <label className="block text-sm mb-1 text-gray-300">Description</label>
                 <textarea
                   name="description"
                   value={newGoal.description}
                   onChange={handleNewGoalChange}
-                  className="w-full px-3 py-2 rounded bg-gray-800 border border-gray-700 text-white"
+                  className="w-full px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-blue-500/50 transition-all duration-200"
                   rows={2}
                 />
               </div>
             </div>
             {/* Resources */}
-            <div className="mt-4">
-              <label className="block text-sm mb-1">Resources</label>
+            <div className="mt-6">
+              <label className="block text-sm mb-2 text-gray-300">Resources</label>
               {newGoal.resources.map((res, idx) => (
                 <div key={idx} className="flex gap-2 mb-2">
                   <input
@@ -798,7 +805,7 @@ export default function GoalsManagement() {
                     onChange={(e) =>
                       handleResourceChange(idx, "label", e.target.value)
                     }
-                    className="px-2 py-1 rounded bg-gray-800 border border-gray-700 text-white flex-1"
+                    className="px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-blue-500/50 transition-all duration-200 flex-1"
                   />
                   <input
                     type="url"
@@ -807,12 +814,12 @@ export default function GoalsManagement() {
                     onChange={(e) =>
                       handleResourceChange(idx, "url", e.target.value)
                     }
-                    className="px-2 py-1 rounded bg-gray-800 border border-gray-700 text-white flex-1"
+                    className="px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-blue-500/50 transition-all duration-200 flex-1"
                   />
                   <button
                     type="button"
                     onClick={() => removeResourceField(idx)}
-                    className="text-red-400 hover:text-red-600"
+                    className="text-red-400 hover:text-red-300 transition-colors duration-200"
                     disabled={newGoal.resources.length === 1}
                   >
                     Remove
@@ -822,14 +829,14 @@ export default function GoalsManagement() {
               <button
                 type="button"
                 onClick={addResourceField}
-                className="text-blue-400 hover:text-blue-600 text-sm mt-1"
+                className="text-blue-400 hover:text-blue-300 text-sm mt-1 transition-colors duration-200"
               >
                 + Add Resource
               </button>
             </div>
             {/* Subtasks */}
-            <div className="mt-4">
-              <label className="block text-sm mb-1">Subtasks</label>
+            <div className="mt-6">
+              <label className="block text-sm mb-2 text-gray-300">Subtasks</label>
               {newGoal.subtasks.map((sub, idx) => (
                 <div key={idx} className="flex gap-2 mb-2 items-center">
                   <input
@@ -839,14 +846,14 @@ export default function GoalsManagement() {
                     onChange={(e) =>
                       handleSubtaskChange(idx, "title", e.target.value)
                     }
-                    className="px-2 py-1 rounded bg-gray-800 border border-gray-700 text-white flex-1"
+                    className="px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white placeholder:text-gray-500 focus:border-blue-500/50 transition-all duration-200 flex-1"
                   />
                   <select
                     value={sub.status}
                     onChange={(e) =>
                       handleSubtaskChange(idx, "status", e.target.value)
                     }
-                    className="px-2 py-1 rounded bg-gray-800 border border-gray-700 text-white"
+                    className="px-3 py-2 rounded bg-gray-800/50 border border-gray-700/50 text-white focus:border-blue-500/50 transition-all duration-200"
                   >
                     {kanbanColumns.map((col) => (
                       <option key={col} value={col}>
@@ -857,7 +864,7 @@ export default function GoalsManagement() {
                   <button
                     type="button"
                     onClick={() => removeSubtaskField(idx)}
-                    className="text-red-400 hover:text-red-600"
+                    className="text-red-400 hover:text-red-300 transition-colors duration-200"
                     disabled={newGoal.subtasks.length === 1}
                   >
                     Remove
@@ -867,22 +874,22 @@ export default function GoalsManagement() {
               <button
                 type="button"
                 onClick={addSubtaskField}
-                className="text-blue-400 hover:text-blue-600 text-sm mt-1"
+                className="text-blue-400 hover:text-blue-300 text-sm mt-1 transition-colors duration-200"
               >
                 + Add Subtask
               </button>
             </div>
-            <div className="mt-6 flex justify-end gap-2">
+            <div className="mt-8 flex justify-end gap-2">
               <button
                 type="button"
                 onClick={handleCancelAddGoal}
-                className="px-4 py-2 rounded bg-gray-700 hover:bg-gray-600 text-white"
+                className="px-4 py-2 rounded bg-gray-800/50 hover:bg-gray-700/50 text-white border border-gray-700/50 hover:border-gray-600/50 transition-all duration-200"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                className="px-4 py-2 rounded bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-medium transition-all duration-200"
               >
                 Add Goal
               </button>
